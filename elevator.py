@@ -103,3 +103,5 @@ class InsidePanel(Elevator):
         pass #ToDo
 
         # I suppose on this panel, you could have other controls like closeDoor, openDoor, callForHelp (or soundAlarm) or something. But for the sake of time, I'll forego those options.
+
+        ### Because I took some time to write a few things out on paper, I'm really out of time on this--even though I haven't technically coded for two full hours (some time was used to plan and think through this)
