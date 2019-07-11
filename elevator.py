@@ -43,26 +43,35 @@ class Elevator(Controller):
         # this will track whether or not maintenance is needed at 100 tripAmount (Boolean). If true, elevator will not be operatable.
         self.maintenanceNeeded = maintenanceNeeded
 
+    def can_move_up(self):
+        # this checks if it can move up. If at top, it returns false.
+        return self.reportFloor < len(self.floors) - 1
+
+    def can_move_down(self):
+        # this checks if it can move down. If at ground floor, it returns false.
+        return self.reportFloor > len(self.floors) - 1
+
     def move_to_request(self):
         # this function will move the elevator to requested floor
         pass #ToDo
 
     def open_door(self):
         # this function will open the door
-        pass #ToDo
+        self.openDoor = True
 
     def close_door(self):
         # this function will close the door after a timeout from opening if there is no obstruction
-        pass #ToDo
+        if self.openDoor == True and self.doorObstruction == False:
+            self.openDoor = False
 
     def count_trips(self):
         # this will count trips up to 100
-        pass #ToDo
+        self.tripAmount += 1
     
     def put_in_maintenance(self):
         # this will put elevator into maintenance mode, making it inoperable after 100 trips.
-        pass #ToDo
-
+        if self.tripAmount == 100:
+            maintenanceNeeded = True
 
 class OutsidePanel(Controller):
     
@@ -93,4 +102,4 @@ class InsidePanel(Elevator):
         # this function sends a request from the elevator it is in to the controller to move to the requested floor
         pass #ToDo
 
-    # I suppose on this panel, you could have other controls like closeDoor, openDoor, callForHelp (or soundAlarm) or something. But for the sake of time, I'll forego those options.
+        # I suppose on this panel, you could have other controls like closeDoor, openDoor, callForHelp (or soundAlarm) or something. But for the sake of time, I'll forego those options.
