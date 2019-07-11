@@ -10,9 +10,23 @@ class Controller:
         # this will take a floor call from a request
         self.floorCall
 
+    def take_floorCall(self):
+        # this function takes a call from panel (either inside or outside)
+        pass #ToDo
+
+    def find_elevator(self):
+        # this function finds the nearest elevator
+        pass #ToDo
+
+    def stop_elevator(self):
+        # this function stops an elevator at a request
+        pass #ToDo
+
+    
+
 class Elevator(Controller):
 
-    def __init__(self, area, elevators, floors, floorCall, elevatorNumber, reportFloor, openDoor, floorRequest, tripAmount, maintenanceNeeded):
+    def __init__(self, area, elevators, floors, floorCall, elevatorNumber, reportFloor, openDoor, doorObstruction, floorRequest, tripAmount, maintenanceNeeded):
         super().__init__(area, elevators, floors, floorCall)
         # this refers to which elevator is it (int)
         self.elevatorNumber = elevatorNumber
@@ -20,6 +34,8 @@ class Elevator(Controller):
         self.reportFloor = reportFloor
         # this reports door open or closed (boolean)
         self.openDoor = openDoor
+        # this will sense if anything obstructs the door--to open it if needed (boolean)
+        self.doorObstruction = doorObstruction
         # this will take a floor request from the controller
         self.floorRequest = floorRequest
         # this will be a counter to track the number of trips (int, counter)
@@ -27,7 +43,27 @@ class Elevator(Controller):
         # this will track whether or not maintenance is needed at 100 tripAmount (Boolean). If true, elevator will not be operatable.
         self.maintenanceNeeded = maintenanceNeeded
 
+    def move_to_request(self):
+        # this function will move the elevator to requested floor
+        pass #ToDo
+
+    def open_door(self):
+        # this function will open the door
+        pass #ToDo
+
+    def close_door(self):
+        # this function will close the door after a timeout from opening if there is no obstruction
+        pass #ToDo
+
+    def count_trips(self):
+        # this will count trips up to 100
+        pass #ToDo
     
+    def put_in_maintenance(self):
+        # this will put elevator into maintenance mode, making it inoperable after 100 trips.
+        pass #ToDo
+
+
 class OutsidePanel(Controller):
     
     def __init__(self, area, elevators, floors, floorCall, floorNumber, upCall, downCall):
@@ -39,8 +75,22 @@ class OutsidePanel(Controller):
         # this is if the panel calls for an elevator to go down (boolean)
         self.downCall = downCall
 
+    def up_request(self):
+        # this function sends a request to the controller to move up from floor it's on
+        pass #ToDo
+
+    def down_request(self):
+        # this function sends a request to the controller to move down from floor it's on
+        pass #ToDo
+
 class InsidePanel(Elevator):
-    def __init__(self, area, elevators, floors, floorCall, elevatorNumber, reportFloor, openDoor, floorRequest, tripAmount, maintenanceNeeded, floorCalled):
-        super().__init__(area, elevators, floors, floorCall, elevatorNumber, reportFloor, openDoor, floorRequest, tripAmount, maintenanceNeeded)
+    def __init__(self, area, elevators, floors, floorCall, elevatorNumber, reportFloor, openDoor, doorObstruction, floorRequest, tripAmount, maintenanceNeeded, floorCalled):
+        super().__init__(area, elevators, floors, floorCall, elevatorNumber, reportFloor, openDoor, doorObstruction, floorRequest, tripAmount, maintenanceNeeded)
         # this will make a request to which floor the person inside wants to go to. It will send it to the controller
         self.floorCalled = floorCalled
+
+    def request_to_floor(self):
+        # this function sends a request from the elevator it is in to the controller to move to the requested floor
+        pass #ToDo
+
+    # I suppose on this panel, you could have other controls like closeDoor, openDoor, callForHelp (or soundAlarm) or something. But for the sake of time, I'll forego those options.
